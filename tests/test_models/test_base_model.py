@@ -1,18 +1,14 @@
-#!/usr/bin/python3
-"""Testing to Base Models"""
+#!/usr/python3
+'''
+tests
+'''
 import unittest
 from models.base_model import BaseModel
 
+class test_constructor(unittest.TestCase):
+    ''' tests for Base Class Constructor Method '''
 
-class TestBaseModels(unittest.TestCase):
-    """
-    testing the id
-    """
-    def Test_uuid(self):
-        """
-        test id
-        """
+    def test_id_normal(self):
+        '''id'''
         bm1 = BaseModel()
-        bm2 = BaseModel()
         self.assertIsInstance(bm1, BaseModel)
-        self.assertTrue(hasattr(bm1, "id"))
