@@ -4,6 +4,7 @@ tests
 '''
 import unittest
 from models.base_model import BaseModel
+import datetime
 
 
 class test_constructor(unittest.TestCase):
@@ -29,8 +30,10 @@ class test_constructor(unittest.TestCase):
         bm1.save()
         self.assertTrue(type(bm1.created_at), type(bm1.updated_at))
         self.assertNotEqual(bm1.created_at, bm1.updated_at)
-        self.assertIsInstance(bm1.created_at, str)
-        self.assertIsInstance(bm1.updated_at, str)
+        self.assertIsInstance(bm1.to_dict()['created_at'], str)
+        self.assertNotIsInstance(bm1.updated_at, str)
+        self.assertEqual(type(bm1.updated_at), datetime.datetime)
+        self.assertIsInstance(bm1.updated_at, datetime.datetime)
 
     def test_adding_thing_from_outside(self):
         """testing adding attributes from outside"""
@@ -38,3 +41,14 @@ class test_constructor(unittest.TestCase):
         bm1.name = "Holberton"
         self.assertTrue(bm1.to_dict()["name"])
         self.assertIn("name", bm1.to_dict())
+
+    def test_to_dictionary_recreating(self):
+        """Generating the dictionary """
+        bm1 = BaseModel()
+        bm1.name = "Holberton"
+        dictionary_bm1 = bm1.to_dict()
+        bm2 = BaseModel(**dictionary_bm1)
+        self.assertIsNot(bm1, bm2)
+        self.assertEqual(bm1.to_dict(), bm2.to_dict())
+        print("bm1 created at: ", type(bm1.created_at))
+        print("bm2 created at: ", type(bm2.created_at))
