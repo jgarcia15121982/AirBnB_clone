@@ -7,12 +7,10 @@ from datetime import datetime
 import uuid
 
 
-
-
 class BaseModel:
     """ Base class manage id attribute in all your future classes """
 
-    def __init__(self,**kwargs):
+    def __init__(self, **kwargs):
         """ Constructor method"""
         if kwargs:
             kwargs.pop('__class__')
@@ -28,7 +26,8 @@ class BaseModel:
         The __str__ magic method that returns
         the BaseModel description
         """
-        return "[{}] ({}) {}".format(__class__.__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(__class__.__name__,
+                                     self.id, self.__dict__)
 
     def save(self):
         """
