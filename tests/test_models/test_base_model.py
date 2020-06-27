@@ -50,5 +50,3 @@ class test_constructor(unittest.TestCase):
         bm2 = BaseModel(**dictionary_bm1)
         self.assertIsNot(bm1, bm2)
         self.assertEqual(bm1.to_dict(), bm2.to_dict())
-        print("bm1 created at: ", type(bm1.created_at))
-        print("bm2 created at: ", type(bm2.created_at))
