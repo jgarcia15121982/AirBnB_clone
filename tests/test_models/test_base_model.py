@@ -4,6 +4,7 @@ tests
 '''
 import unittest
 from models.base_model import BaseModel
+from engine.file_storage import FileStorage
 import datetime
 
 
@@ -50,3 +51,13 @@ class test_constructor(unittest.TestCase):
         bm2 = BaseModel(**dictionary_bm1)
         self.assertIsNot(bm1, bm2)
         self.assertEqual(bm1.to_dict(), bm2.to_dict())
+
+    def test_FileStorage_all_module(self):
+        """Testing all module"""
+        bm1 = BaseModel()
+        bm1.name = "Holberton"
+        bm1.QQQQQQQQ = "!!!!!!!!!!!!"
+        bm2 = BaseModel()
+        fs1 = FileStorage()
+        fs1_all_return = fs1.all()
+        print(fs1_all_return)

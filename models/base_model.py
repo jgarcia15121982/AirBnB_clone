@@ -5,11 +5,10 @@ Base Model
 import time
 from datetime import datetime
 import uuid
-
+from models import storage
 
 class BaseModel:
     """ Base class manage id attribute in all your future classes """
-
     def __init__(self, **kwargs):
         """ Constructor method"""
         if kwargs:
@@ -24,6 +23,7 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.today()
             self.updated_at = datetime.today()
+            storage.new(self)
 
     def __str__(self):
         """
@@ -39,6 +39,7 @@ class BaseModel:
         with the current datetime
         """
         updated_at = datetime.today()
+        storage.save()
 
     def to_dict(self):
         """
@@ -50,3 +51,4 @@ class BaseModel:
         copy['created_at'] = self.created_at.isoformat()
         copy['updated_at'] = self.updated_at.isoformat()
         return copy
+    
