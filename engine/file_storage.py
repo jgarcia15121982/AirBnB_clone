@@ -4,7 +4,7 @@ import json
 
 class FileStorage():
     """serializes instances to a JSON file and deserializes JSON file to instances"""
-    __file_path = None
+    __file_path = "json.file"
     __objects = {}
 
     def all(self):
@@ -17,7 +17,7 @@ class FileStorage():
     def save(self):
         """serializes __objects to the JSON file (path: __file_path)"""
         try:
-            with open(self.__file_path, mode="w", encoding="utf-8") as File:
+            with open(self.__file_path, mode="w+", encoding="utf-8") as File:
                 string = json.dumps(self.__objects)
                 File.write(string)
         except(TypeError):
@@ -29,4 +29,6 @@ class FileStorage():
             with open(self.__file_path, mode="r", encoding="utf-8") as File:
                 self.__objects = File.read()
         except(TypeError):
+            pass
+        except(FileNotFoundError):
             pass
