@@ -15,7 +15,11 @@ class BaseModel:
         if kwargs:
             kwargs.pop('__class__')
             for a in kwargs:
-                setattr(self, a, kwargs[a])
+                if a == "created_at" or a == "updated_at":
+                    setattr(self, a, datetime.strptime(kwargs[a],
+                                                       "%Y-%m-%dT%H:%M:%S.%f"))
+                else:
+                    setattr(self, a, kwargs[a])
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.today()
