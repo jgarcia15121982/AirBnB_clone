@@ -8,7 +8,9 @@ import uuid
 from models import storage
 
 class BaseModel:
-    """ Base class manage id attribute in all your future classes """
+    """ Base class manage id attribute in
+    all your future classes
+    """
     def __init__(self, **kwargs):
         """ Constructor method"""
         if kwargs:
