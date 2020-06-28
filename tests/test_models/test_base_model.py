@@ -60,4 +60,9 @@ class test_constructor(unittest.TestCase):
         bm2 = BaseModel()
         fs1 = FileStorage()
         fs1_all_return = fs1.all()
-        print(fs1_all_return)
+
+    def save_method_filestorage(self):
+        """Testing the Save method from File storage
+        self.assertFalse(File.Exists("json.file"))
+        """
+        pass
