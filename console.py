@@ -60,9 +60,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, args):
         """updates an object considering its id"""
-        storage.all()[args.split()[0] + "." + args.split()[1]][args.split()[2]] = args.split()[3]
+        setattr(storage.all()[args.split()[0] + "." + args.split()[1]], args.split()[2], args.split()[3])
         storage.save()
-        storage.reload()
+    def do_save(self, args):
+        storage.save()
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
-print("[", end=="")

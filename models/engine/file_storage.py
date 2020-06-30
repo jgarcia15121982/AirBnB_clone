@@ -12,12 +12,15 @@ class FileStorage():
         return self.__objects
     def new(self, obj):
         """sets in __objects the obj with key <obj class name>.id"""
-        self.__objects[obj.__class__.__name__ + "." + obj.to_dict()["id"]] = obj.to_dict()
+        self.__objects[obj.__class__.__name__ + "." + obj.to_dict()["id"]] = obj
     def save(self):
         """serializes __objects to the JSON file (path: __file_path)"""
         try:
             with open(self.__file_path, mode="w+", encoding="utf-8") as File:
-                string = json.dumps(self.__objects)
+                copy = FileStorage.__objects.copy()
+                for key, value in copy.items():
+                    copy[key] = value.to_dict()
+                string = json.dumps(copy)
                 File.write(string)
         except(TypeError):
             pass
@@ -26,7 +29,8 @@ class FileStorage():
         """deserializes the JSON file to __objects"""
         try:
             with open(self.__file_path) as json_file:
-                data = json.load(json_file)
-                self.__objects = data
-        except(FileNotFoundError):
+                dicti_of_dicti = json.load(json_file)
+                for key, value in dicti_of_dicti,items():
+                    self.__objects[key] = BaseModel(**value)
+        except:
             pass
