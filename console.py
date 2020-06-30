@@ -53,12 +53,16 @@ class HBNBCommand(cmd.Cmd):
             except:
                 print("** no instance found **")
     def do_all(self, args):
-        print("[", end="")
-        for i, instance in enumerate(BaseModel.instances):
-            print("\"{}\"".format(instance), end="")
-            if i != len(BaseModel.instances) - 1:
-                print(", ")
-        print("]")
+        inst = []
+        for key, value in storage.all().items():
+            inst.append(str(value))
+        print(inst)
+
+    def do_update(self, args):
+        """updates an object considering its id"""
+        storage.all()[args.split()[0] + "." + args.split()[1]][args.split()[2]] = args.split()[3]
+        storage.save()
+        storage.reload()
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
 print("[", end=="")
