@@ -26,6 +26,7 @@ class HBNBCommand(cmd.Cmd):
             if args.split()[0] == "BaseModel":
                 instance = BaseModel()
                 instance.save()
+                print(str(instance.id))
             else:
                 print("** class doesn't exist **")
 
