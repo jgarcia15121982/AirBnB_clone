@@ -42,7 +42,7 @@ class HBNBCommand(cmd.Cmd):
         if len(args.split()) == 0:
             print("** class name missing **")
         elif len(args.split()) == 1:
-            if args.split()[0] == "BaseMode":
+            if args.split()[0] == "BaseModel":
                 print("** instance id missing **")
             else:
                 print("** class doesn't exist **")
