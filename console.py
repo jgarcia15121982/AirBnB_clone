@@ -3,12 +3,18 @@
 import cmd
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
-
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import  User
 
 class HBNBCommand(cmd.Cmd):
     """Console of AirBnB"""
     prompt = '(hbnb) '
-
+    classes = ["BaseModel", "Amenity", "City", "Place", "Review",
+               "State", "User"]
     def do_quit(self, args):
         """Quit command, exits the program """
         exit()
@@ -26,7 +32,7 @@ class HBNBCommand(cmd.Cmd):
         if len(args.split()) == 0:
             print("** class name missing **")
         else:
-            if args.split()[0] == "BaseModel":
+            if args.split()[0] in HBNBCommand.classes:
                 instance = BaseModel()
                 instance.save()
                 print(str(instance.id))
@@ -40,15 +46,15 @@ class HBNBCommand(cmd.Cmd):
         if len(args.split()) == 0:
             print("** class name missing **")
         elif len(args.split()) == 1:
-            if args.split()[0] == "BaseModel":
-                print("** instance id missing **")
-            else:
+            if args.split()[0] not in HBNBCommand.classes:
                 print("** class doesn't exist **")
+            else:
+                print("** instance id missing **")
         else:
             try:
                 print(storage.all()[args.split()[0] + "." + args.split()[1]])
                 storage.reload()
-            except:
+            except(KeyError):
                 print("** no instance found **")
 
     def do_destroy(self, args):
@@ -57,7 +63,7 @@ class HBNBCommand(cmd.Cmd):
         if len(args.split()) == 0:
             print("** class name missing **")
         elif len(args.split()) == 1:
-            if args.split()[0] == "BaseModel":
+            if args.split()[0] not in HBNBCommand.classes:
                 print("** instance id missing **")
             else:
                 print("** class doesn't exist **")
@@ -65,7 +71,7 @@ class HBNBCommand(cmd.Cmd):
             try:
                 del storage.all()[args.split()[0] + "." + args.split()[1]]
                 storage.save()
-            except:
+            except(KeyError):
                 print("** no instance found **")
 
     def do_all(self, args):
@@ -76,7 +82,7 @@ class HBNBCommand(cmd.Cmd):
             for key, value in storage.all().items():
                 inst.append(str(value))
             print(inst)
-        elif args.split()[0] != "BaseModel":
+        elif args.split()[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
         else:
             for key, value in storage.all().items():
@@ -94,7 +100,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(args.split()) == 3:
             print("** value missing **")
         else:
-            if args.split()[0] != "BaseModel":
+            if args.split()[0] not in HBNBCommand.classes:
                 print("** class doesn't exist **")
             else:
                 try:
