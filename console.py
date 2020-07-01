@@ -1,18 +1,23 @@
 #!/usr/bin/python3
 """AirBnB console"""
-import cmd, sys
+import cmd
+import sys
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 
+
 class HBNBCommand(cmd.Cmd):
     """Console of AirBnB"""
-    prompt = '(hbnb)'
+    prompt = '(hbnb) '
+
     def do_quit(self, args):
         """Quit command, exits the program """
         exit()
+
     def do_EOF(self, args):
         """ End of file, exits the program"""
         exit()
+
     def do_create(self, args):
         """Creates a Base model instance and saves it to  the JSON file"""
         if len(args.split()) == 0:
@@ -21,8 +26,10 @@ class HBNBCommand(cmd.Cmd):
             if args.split()[0] == "BaseModel":
                 instance = BaseModel()
                 instance.save()
+                print(str(instance.id))
             else:
                 print("** class doesn't exist **")
+
     def do_show(self, args):
         """Prints the string representation of an instance based on the class name and id"""
         storage.reload()
@@ -39,6 +46,7 @@ class HBNBCommand(cmd.Cmd):
                 storage.reload()
             except:
                 print("** no instance found **")
+
     def do_destroy(self, args):
         """Destroys an instance"""
         storage.reload()
@@ -55,18 +63,26 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
             except:
                 print("** no instance found **")
+
     def do_all(self, args):
         storage.reload()
         inst = []
-        for key, value in storage.all().items():
-            inst.append(str(value))
-        print(inst)
+        if args.split()[0] != "BaseModel":
+            print("** class doesn't exist **")
+        else:
+            for key, value in storage.all().items():
+                inst.append(str(value))
+            print(inst)
 
     def do_update(self, args):
         """updates an object considering its id"""
-        storage.reload()
-        setattr(storage.all()[args.split()[0] + "." + args.split()[1]], args.split()[2], args.split()[3])
+        setattr(storage.all()[args.split()[0] + "." + args.split()[1]],
+                args.split()[2], args.split()[3])
         storage.save()
+
+    def do_save(self, args):
+        storage.save()
+
 if __name__ == '__main__':
     storage = FileStorage()
     storage.reload()
