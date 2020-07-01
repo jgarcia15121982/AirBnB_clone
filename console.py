@@ -8,13 +8,15 @@ from models.city import City
 from models.place import Place
 from models.review import Review
 from models.state import State
-from models.user import  User
+from models.user import User
+
 
 class HBNBCommand(cmd.Cmd):
     """Console of AirBnB"""
     prompt = '(hbnb) '
     classes = ["BaseModel", "Amenity", "City", "Place", "Review",
                "State", "User"]
+
     def do_quit(self, args):
         """Quit command, exits the program """
         exit()
