@@ -64,9 +64,9 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif len(args.split()) == 1:
             if args.split()[0] not in HBNBCommand.classes:
-                print("** instance id missing **")
-            else:
                 print("** class doesn't exist **")
+            else:
+                print("** instance id missing **")
         else:
             try:
                 del storage.all()[args.split()[0] + "." + args.split()[1]]
