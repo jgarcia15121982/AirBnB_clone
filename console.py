@@ -67,12 +67,9 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, args):
         storage.reload()
         inst = []
-        if args.split()[0] != "BaseModel":
-            print("** class doesn't exist **")
-        else:
-            for key, value in storage.all().items():
-                inst.append(str(value))
-            print(inst)
+        for key, value in storage.all().items():
+            inst.append(str(value))
+        print(inst)
 
     def do_update(self, args):
         """updates an object considering its id"""

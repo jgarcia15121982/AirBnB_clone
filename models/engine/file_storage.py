@@ -2,6 +2,8 @@
 """that serializes instances from and to a JSON file"""
 import json
 import sys
+from models.base_model import BaseModel
+
 
 class FileStorage():
     """serializes instances from and to a JSON file"""
@@ -35,6 +37,6 @@ class FileStorage():
                 for key, value in dict_from_json.items():
                     tmp = eval(value['__class__'])(**value)
                     FileStorage.__objects[key] = tmp
-        except(Exception):
+        except(FileNotFoundError):
             pass
        
