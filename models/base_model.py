@@ -11,7 +11,6 @@ class BaseModel:
     """ Base class manage id attribute in
     all your future classes
     """
-    instances = []
     def __init__(self, **kwargs):
         """ Constructor method"""
         if kwargs:
@@ -27,7 +26,6 @@ class BaseModel:
             self.created_at = datetime.today()
             self.updated_at = datetime.today()
         models.storage.new(self)
-        BaseModel.instances.append(self)
 
     def __str__(self):
         """

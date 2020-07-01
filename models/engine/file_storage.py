@@ -20,11 +20,12 @@ class FileStorage():
     def save(self):
         """serializes __objects to the JSON file (path: __file_path)"""
         try:
-            for key, value in self.__objects.items():
+            copy_dict = FileStorage.__objects.copy()
+            for key, value in copy_dict.items():
                 if not isinstance(value, dict):
-                    self.__objects[key] = value.to_dict()
-            with open(self.__file_path, "w") as f:
-                json.dump(self.__objects, f)
+                    copy_dict[key] = value.to_dict()
+            with open(self.__file_path, "w") as File:
+                json.dump(copy_dict, File)
         except(TypeError):
             pass
 
