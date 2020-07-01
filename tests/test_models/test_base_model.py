@@ -20,6 +20,7 @@ class test_constructor(unittest.TestCase):
         self.assertIsInstance(bm1.id, str)
         self.assertNotEqual(bm1, bm2)
         self.assertNotEqual(bm1.id, bm2.id)
+        self.assertEqual(type(bm1.id),str)
 
     def test_dict(self):
         """ testing to_dict method"""
