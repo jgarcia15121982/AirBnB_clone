@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """AirBnB console"""
 import cmd
-import sys
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 
@@ -15,8 +14,12 @@ class HBNBCommand(cmd.Cmd):
         exit()
 
     def do_EOF(self, args):
-        """ End of file, exits the program"""
+        """End of file, exits the program"""
         exit()
+
+    def emptyline(self):
+        """Adds a new line when press Enter key"""
+        pass
 
     def do_create(self, args):
         """Creates a Base model instance and saves it to  the JSON file"""
@@ -31,7 +34,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
 
     def do_show(self, args):
-        """Prints the string representation of an instance based on the class name and id"""
+        """Prints the string representation of an instance
+        based on the class name and id"""
         storage.reload()
         if len(args.split()) == 0:
             print("** class name missing **")
@@ -65,11 +69,19 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_all(self, args):
+        """Brings all objects stored"""
         storage.reload()
         inst = []
-        for key, value in storage.all().items():
-            inst.append(str(value))
-        print(inst)
+        if len(args.split()) == 0:
+            for key, value in storage.all().items():
+                inst.append(str(value))
+            print(inst)
+        elif args.split()[0] != "BaseModel":
+            print("** class doesn't exist **")
+        else:
+            for key, value in storage.all().items():
+                inst.append(str(value))
+            print(inst)
 
     def do_update(self, args):
         """updates an object considering its id"""
@@ -77,8 +89,6 @@ class HBNBCommand(cmd.Cmd):
                 args.split()[2], args.split()[3])
         storage.save()
 
-    def do_save(self, args):
-        storage.save()
 
 if __name__ == '__main__':
     storage = FileStorage()
