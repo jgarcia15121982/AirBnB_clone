@@ -2,10 +2,10 @@
 '''
 Base Model
 '''
-import time
 from datetime import datetime
 import uuid
 import models
+
 
 class BaseModel:
     """ Base class manage id attribute in
@@ -53,4 +53,3 @@ class BaseModel:
         copy['created_at'] = self.created_at.isoformat()
         copy['updated_at'] = self.updated_at.isoformat()
         return copy
-    
