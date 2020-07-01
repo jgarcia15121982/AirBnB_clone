@@ -2,7 +2,7 @@
 """AirBnB console"""
 import cmd, sys
 from models.base_model import BaseModel
-from models import storage
+from models.engine.file_storage import FileStorage
 
 class HBNBCommand(cmd.Cmd):
     """Console of AirBnB"""
@@ -25,6 +25,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
     def do_show(self, args):
         """Prints the string representation of an instance based on the class name and id"""
+        storage.reload()
         if len(args.split()) == 0:
             print("** class name missing **")
         elif len(args.split()) == 1:
@@ -35,10 +36,12 @@ class HBNBCommand(cmd.Cmd):
         else:
             try:
                 print(storage.all()[args.split()[0] + "." + args.split()[1]])
+                storage.reload()
             except:
                 print("** no instance found **")
     def do_destroy(self, args):
         """Destroys an instance"""
+        storage.reload()
         if len(args.split()) == 0:
             print("** class name missing **")
         elif len(args.split()) == 1:
@@ -53,6 +56,7 @@ class HBNBCommand(cmd.Cmd):
             except:
                 print("** no instance found **")
     def do_all(self, args):
+        storage.reload()
         inst = []
         for key, value in storage.all().items():
             inst.append(str(value))
@@ -60,9 +64,10 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, args):
         """updates an object considering its id"""
+        storage.reload()
         setattr(storage.all()[args.split()[0] + "." + args.split()[1]], args.split()[2], args.split()[3])
         storage.save()
-    def do_save(self, args):
-        storage.save()
 if __name__ == '__main__':
+    storage = FileStorage()
+    storage.reload()
     HBNBCommand().cmdloop()
