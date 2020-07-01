@@ -35,7 +35,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             if args.split()[0] in HBNBCommand.classes:
-                instance = BaseModel()
+                instance = globals()[args]()
                 instance.save()
                 print(str(instance.id))
             else:
