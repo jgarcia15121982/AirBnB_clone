@@ -30,7 +30,6 @@ class FileStorage():
 
     def reload(self):
         """deserializes the JSON file to __objects"""
-        print("In reload")
         try:
             with open(FileStorage.__file_path) as json_file:
                 dict_from_json = json.load(json_file)
@@ -39,4 +38,3 @@ class FileStorage():
                     FileStorage.__objects[key] = tmp
         except(FileNotFoundError):
             pass
-       
