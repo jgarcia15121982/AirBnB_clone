@@ -2,7 +2,6 @@
 '''
 Base Model
 '''
-import time
 from datetime import datetime
 import uuid
 import models
