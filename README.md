@@ -26,8 +26,21 @@ guillaume@ubuntu:~/AirBnB$
 
 This is the first step towards building our first full web application: the AirBnB clone. This first step is very important because we will use what you build during this project with all other following projects: HTML/CSS templating, database storage, API, front-end integration…
 
-## About the console
+## Learning Objectives
 
+* How to create a Python package
+* How to create a command interpreter in Python using the cmd module
+* What is Unit testing and how to implement it in a large project
+* How to serialize and deserialize a Class
+* How to write and read a JSON file
+* How to manage `datetime`
+* What is an `UUID`
+* What is `*args` and how to use it
+* What is `**kwargs` and how to use it
+* How to handle named arguments in a function
 
-AirBnB_clone
-The Console
+## Authors
+
+* Angie Castaño <1634@holbertonschool.com>
+* John Garcia <1620@holbertonschool.com>
+
