@@ -1,6 +1,6 @@
 # AirBnB Clone Project
 
-![alt text](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUWMNL5ANN%2F20200701%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200701T195450Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=16b781f82cbd7f349670ab5930934cfcb229606ee6eb62332a2d4e64c17e6eb4)
+![AirBnB Clone](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png)
 
 ## AirBnB clone - The console
 
