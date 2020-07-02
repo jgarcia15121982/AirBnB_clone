@@ -39,3 +39,21 @@ class TestFileStorage(unittest.TestCase):
         obj_dict_postsave = self.storage.all()
         self.assertTrue(bm1_id in obj_dict_postsave)
         self.assertTrue(obj_dict_postsave == obj_dict_presave)
+
+    def test_reload(self):
+        bm1 = BaseModel()
+        bm1_id = "{}.{}".format(bm1.__class__.__name__, bm1.id)
+        self.storage = FileStorage()
+        obj_dict_presave = self.storage.all()
+        bm1.save()
+        self.storage.reload()
+        obj_dict_postsave = self.storage.all()
+        self.assertTrue(bm1_id in obj_dict_postsave)
+        self.assertTrue(obj_dict_postsave == obj_dict_presave)
+
+    def test_private_class_attributes(self):
+        self.storage = FileStorage()
+        with self.assertRaises(AttributeError):
+            print(self.storage.__objects)
+        with self.assertRaises(AttributeError):
+            print(self.storage.__file_path)
