@@ -6,6 +6,7 @@ import unittest
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 
+
 class TestFileStorage(unittest.TestCase):
     """Unittest for class FileStorage"""
     def test_file_path(self):
