@@ -35,7 +35,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             if args.split()[0] in HBNBCommand.classes:
-                instance = BaseModel()
+                instance = globals()[args]()
                 instance.save()
                 print(str(instance.id))
             else:
@@ -114,6 +114,30 @@ class HBNBCommand(cmd.Cmd):
                 except(KeyError):
                     print("** no instance found **")
 
+    def do_pcount(self, args):
+        """Class.all()"""
+        i = 0
+        for key, value in storage.all().items():
+            if key.split(".")[0] == args.split()[0]:
+                i += 1
+        print(i)
+
+    def do_pall(self, args):
+        print("[", end="")
+        for key, value in storage.all().items():
+            if key.split(".")[0] == args.split()[0]:
+                print(value, end="")
+        print("]")
+
+    def precmd(self, line):
+        """Modifies the line from the command"""
+        if len(line.split(".")) > 1:
+            first = line.split(".")[1].split("(")[0]
+            second = line.split(".")[0]
+            third = line.split(".")[1].split("(")[1] .replace(")", "")
+            return "p{} {} {}".format(first, second, third)
+        else:
+            return line
 if __name__ == '__main__':
     storage = FileStorage()
     storage.reload()
