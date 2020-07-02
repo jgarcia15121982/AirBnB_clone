@@ -168,7 +168,7 @@ class HBNBCommand(cmd.Cmd):
                     storage.save()
                 except(KeyError):
                     print("** no instance found **")
-                    
+
     def do_pupdate(self, args):
         """updates an object considering its id"""
         try:
