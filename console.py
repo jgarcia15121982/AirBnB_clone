@@ -146,7 +146,7 @@ class HBNBCommand(cmd.Cmd):
         except(KeyError):
             print("** no instance found **")
 
-    def do_pupdate(self, args):
+    def do_update(self, args):
         """updates an object considering its id"""
         if len(args.split()) == 0:
             print("** class name missing **")
