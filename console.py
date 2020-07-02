@@ -137,6 +137,15 @@ class HBNBCommand(cmd.Cmd):
         except(KeyError):
             print("** no instance found **")
 
+    def do_pdestroy(self, args):
+        """Destroys an instance by it is and its class"""
+        storage.reload()
+        try:
+            del storage.all()[args.split()[0] + "." + args.split()[1]]
+            storage.save()
+        except(KeyError):
+            print("** no instance found **")
+
     def precmd(self, line):
         """Modifies the line from the command"""
         if len(line.split(".")) > 1:
