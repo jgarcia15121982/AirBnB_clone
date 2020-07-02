@@ -1,6 +1,6 @@
 # AirBnB Clone Project
 
-![AirBnB Clone](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png)
+![AirBnB Clone](http://www.plugandgo.es/wp-content/uploads/2018/09/airbnb-logo-meaning.jpg)
 
 ## AirBnB clone - The console
 
