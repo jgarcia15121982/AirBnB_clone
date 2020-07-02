@@ -122,6 +122,13 @@ class HBNBCommand(cmd.Cmd):
                 i += 1
         print(i)
 
+    def do_pall(self, args):
+        print("[", end="")
+        for key, value in storage.all().items():
+            if key.split(".")[0] == args.split()[0]:
+                print(value, end="")
+        print("]")
+
     def precmd(self, line):
         """Modifies the line from the command"""
         if len(line.split(".")) > 1:
