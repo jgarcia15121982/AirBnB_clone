@@ -146,6 +146,29 @@ class HBNBCommand(cmd.Cmd):
         except(KeyError):
             print("** no instance found **")
 
+    def do_pupdate(self, args):
+        """updates an object considering its id"""
+        if len(args.split()) == 0:
+            print("** class name missing **")
+        elif len(args.split()) == 1:
+            print("** instance id missing **")
+        elif len(args.split()) == 2:
+            print("** attribute name missing **")
+        elif len(args.split()) == 3:
+            print("** value missing **")
+        else:
+            if args.split()[0] not in HBNBCommand.classes:
+                print("** class doesn't exist **")
+            else:
+                try:
+                    setattr(storage.all()
+                            [args.split()[0] + "." +
+                             args.split()[1]], args.split()[2],
+                            args.split()[3])
+                    storage.save()
+                except(KeyError):
+                    print("** no instance found **")
+
     def precmd(self, line):
         """Modifies the line from the command"""
         if len(line.split(".")) > 1:
