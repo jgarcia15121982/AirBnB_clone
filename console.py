@@ -168,18 +168,26 @@ class HBNBCommand(cmd.Cmd):
                     storage.save()
                 except(KeyError):
                     print("** no instance found **")
-                    
+
     def do_pupdate(self, args):
         """updates an object considering its id"""
-        try:
-            setattr(storage.all()[args.split()[0].replace("\"", "") +
-                                  "." + args.split()[1].replace("\"", "")
-                                  .replace(",", "")],
-                    args.split()[2].replace(",", "").replace("\"", ""),
-                    args.split()[3].replace(",", ""))
-            storage.save()
-        except(KeyError):
-            print("** no instance found **")
+        if len(args.split()) == 1:
+            try:
+                setattr(storage.all()[args.split()[0].replace("\"", "") +
+                                      "." + args.split()[1].replace("\"", "")
+                                      .replace(",", "")],
+                        args.split()[2].replace(",", "").replace("\"", ""),
+                        args.split()[3].replace(",", ""))
+                storage.save()
+            except(KeyError):
+                print("** no instance found **")
+        else:
+            for word in args.split("{")[1].replace("}", "").split(","):
+                setattr(storage.all()[args.split()[0].replace("\"", "") +
+                                      "." + args.split()[1].replace("\"", "")
+                                      .replace(",", "")],
+                        word.split(":")[0].replace("\'", ""),
+                        word.split(":")[1])
 
     def precmd(self, line):
         """Modifies the line from the command"""
