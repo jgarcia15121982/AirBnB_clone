@@ -18,9 +18,9 @@ class test_constructor(unittest.TestCase):
         self.assertIsInstance(bm1, BaseModel)
         self.assertTrue(hasattr(bm1, "id"))
         self.assertIsInstance(bm1.id, str)
-        self.assertNotEqual(bm1, bm2)
         self.assertNotEqual(bm1.id, bm2.id)
-        self.assertEqual(type(bm1.id),str)
+        self.assertEqual(type(bm1.id), str)
+        self.assertEqual(type(bm2.id), str)
 
     def test_dict(self):
         """ testing to_dict method"""
@@ -63,7 +63,5 @@ class test_constructor(unittest.TestCase):
         fs1_all_return = fs1.all()
 
     def save_method_filestorage(self):
-        """Testing the Save method from File storage
-        self.assertFalse(File.Exists("json.file"))
-        """
-        pass
+        """Testing the Save method from File storage"""
+        self.assertFalse(File.Exists("file.json"))
