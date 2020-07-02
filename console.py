@@ -129,6 +129,46 @@ class HBNBCommand(cmd.Cmd):
                 print(value, end="")
         print("]")
 
+    def do_pshow(self, args):
+        """Shows a instance by its user and by its id"""
+        try:
+            print(storage.all()[args.split()[0] + "." + args.split()[1]])
+            storage.reload()
+        except(KeyError):
+            print("** no instance found **")
+
+    def do_pdestroy(self, args):
+        """Destroys an instance by it is and its class"""
+        storage.reload()
+        try:
+            del storage.all()[args.split()[0] + "." + args.split()[1]]
+            storage.save()
+        except(KeyError):
+            print("** no instance found **")
+
+    def do_pupdate(self, args):
+        """updates an object considering its id"""
+        if len(args.split()) == 0:
+            print("** class name missing **")
+        elif len(args.split()) == 1:
+            print("** instance id missing **")
+        elif len(args.split()) == 2:
+            print("** attribute name missing **")
+        elif len(args.split()) == 3:
+            print("** value missing **")
+        else:
+            if args.split()[0] not in HBNBCommand.classes:
+                print("** class doesn't exist **")
+            else:
+                try:
+                    setattr(storage.all()
+                            [args.split()[0] + "." +
+                             args.split()[1]], args.split()[2],
+                            args.split()[3])
+                    storage.save()
+                except(KeyError):
+                    print("** no instance found **")
+
     def precmd(self, line):
         """Modifies the line from the command"""
         if len(line.split(".")) > 1:
