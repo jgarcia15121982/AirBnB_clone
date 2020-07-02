@@ -114,7 +114,7 @@ class HBNBCommand(cmd.Cmd):
                 except(KeyError):
                     print("** no instance found **")
 
-    def do_pall(self, args):
+    def do_pcount(self, args):
         """Class.all()"""
         i = 0
         for key, value in storage.all().items():
