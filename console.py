@@ -129,6 +129,14 @@ class HBNBCommand(cmd.Cmd):
                 print(value, end="")
         print("]")
 
+    def do_pshow(self, args):
+        """Shows a instance by its user and by its id"""
+        try:
+            print(storage.all()[args.split()[0] + "." + args.split()[1]])
+            storage.reload()
+        except(KeyError):
+            print("** no instance found **")
+
     def precmd(self, line):
         """Modifies the line from the command"""
         if len(line.split(".")) > 1:
