@@ -114,6 +114,23 @@ class HBNBCommand(cmd.Cmd):
                 except(KeyError):
                     print("** no instance found **")
 
+    def do_pall(self, args):
+        """Class.all()"""
+        i = 0
+        for key, value in storage.all().items():
+            if key.split(".")[0] == args.split()[0]:
+                i += 1
+        print(i)
+
+    def precmd(self, line):
+        """Modifies the line from the command"""
+        if len(line.split(".")) > 1:
+            first = line.split(".")[1].split("(")[0]
+            second = line.split(".")[0]
+            third = line.split(".")[1].split("(")[1] .replace(")", "")
+            return "p{} {} {}".format(first, second, third)
+        else:
+            return line
 if __name__ == '__main__':
     storage = FileStorage()
     storage.reload()
