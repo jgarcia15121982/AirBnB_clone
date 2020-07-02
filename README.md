@@ -39,6 +39,26 @@ This is the first step towards building our first full web application: the AirB
 * What is `**kwargs` and how to use it
 * How to handle named arguments in a function
 
+## How to Use it
+* To install the console, clone our repository by running the command `git clone https://github.com/AngieCastano1634/AirBnB_clone.git`
+* To start the console, run the command `./console.py` in the main directory (`AirBnB_clone`) for interactive mode.
+```
+vagrant@vagrant-ubuntu-trusty-64:~/AirBnB_clone$ ./console.py
+(hbnb)
+```
+* Our console also works in non-interactive mode as such:
+```
+vagrant@vagrant-ubuntu-trusty-64:~/AirBnB_clone$ echo "help" | ./console.py
+(hbnb)
+Documented commands (type help <topic>):
+========================================
+EOF  all  count  create  destroy  help  quit  show  update
+
+(hbnb)
+vagrant@vagrant-ubuntu-trusty-64:~/AirBnB_clone$
+```
+For help on syntax, type the command `help <command>` into the console.
+
 ## Authors
 
 * Angie Castaño <1634@holbertonschool.com>
